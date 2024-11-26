@@ -2,6 +2,10 @@
 
  @import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200");
  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500;700&display=swap');
+
+ $breakpoint-phone: 400px;
+ $breakpoint-tablet: 800px;
+
  $typography-map: (
    "title": ("line-height": 20px,
      "size": 14px,
@@ -49,7 +53,7 @@
    // theme colors
    --md-sys-color-background: light-dark(var(--md-sys-color-background-light), var(--md-sys-color-background-dark));
    --md-sys-color-tertiaryest: light-dark(var(--md-sys-color-tertiary-light), var(--md-sys-color-tertiary-dark));
-   --md-sys-color-on-surface: light-dark(var(--md-sys-color-tertiary-container-light), var(--md-sys-color-tertiary-container-dark));
+   --md-sys-color-tertiary-containere: light-dark(var(--md-sys-color-tertiary-container-light), var(--md-sys-color-tertiary-container-dark));
    --md-sys-color-inverse-surface: light-dark(var(--md-sys-color-inverse-surface-light), var(--md-sys-color-inverse-surface-dark));
  }
 
@@ -65,33 +69,33 @@
      'wght' 400,
      'GRAD' 0,
      'opsz' 24;
-     font-size: 24px;
-   margin: 0 12px 0 16px;
+   font-size: 24px;
+   margin-right: 12px;
  }
 
  .container {
    height: 100dvh;
    display: grid;
    grid-template-columns: min-content 1fr;
-   gap: 35px;
    margin: auto auto;
-   background-color: (var(--md-sys-color-background));
+   background-color: var(--md-sys-color-inverse-surface);
+   
  }
 
- .material-symbols-outlined {}
-
  .sidebar {
-   background-color: antiquewhite;
-   border-radius: 0 30px 30px 0;
+   background-color: var(--md-sys-color-background);
+   border-radius: 0 30px 0 0;
    width: 360px;
    box-sizing: border-box;
 
    &__title {
-     padding: 16px 16px 0 16px;
      @include typography-title-active;
+     color: var(--md-sys-color-tertiaryest);
+     padding: 16px 28px;
    }
 
    &__item {
+     @include typography-title;
      margin: 12px;
      display: flex;
      align-items: center;
@@ -99,56 +103,43 @@
      border-radius: 24px;
      height: 56px;
      box-sizing: border-box;
+     color: var(--md-sys-color-tertiaryest);
 
      &:hover {
-       background-color: #ebe6f5;
+       background-color: var(--md-sys-color-tertiary-containere);
        box-sizing: border-box;
        width: 336px;
+       cursor: pointer;
      }
 
      &--active {
-       background-color: #d9d4ec;
+       background-color: var(--md-sys-color-tertiary-containere);
        box-sizing: border-box;
        width: 336px;
-
-       .material-symbols-outlined {
-         margin-right: 12px;
-       }
      }
-
-     &--count {}
    }
 
-   &__labels {
-     position: relative;
-     margin-top: 16px;
-
-     &::before {
-       content: '';
-       position: absolute;
-       top: 0;
-       left: 28px;
-       right: 28px;
-       height: 1px;
-       background-color: black;
-     }
-
-     &__item {
-       margin: 12px;
-       display: flex;
-       align-items: center;
-       padding: 16px;
-       border-radius: 24px;
-       height: 56px;
-       box-sizing: border-box;
-
-       &:hover {
-         background-color: #ebe6f5;
-         box-sizing: border-box;
-         width: 336px;
-       }
-
-       &--title {}
-     }
+   &__divider {
+     border: none;
+     border-top: 1px solid var(--md-sys-color-tertiaryest);
+     width: calc(100% - 56px);
    }
  }
+
+ .content {
+   @include typography-title;
+ }
+
+ @media (width < #{$breakpoint-tablet}){
+  .container {
+    height: 100dvh;
+    display: grid;
+    grid-template-columns: min-content 1fr;
+    margin: auto auto;
+    background-color: var(--md-sys-color-inverse-surface);
+  }
+}
+
+@media (width < #{$breakpoint-phone}){
+  
+}
