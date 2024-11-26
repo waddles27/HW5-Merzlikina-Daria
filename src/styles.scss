@@ -1,27 +1,128 @@
+ @use "sass:map";
+
  @import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200");
  @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap");
- 
- @mixin typography ($font-size, $font-weight ) {
-  font-size: $font-size;
-  font-weight: $font-weight;
-  line-height:1.5;
+
+$typography-map:(
+  "title": (
+    "line-height": 320px, 
+    "size": 14px,
+    "tracking": 0.1px,
+    "weight": 500
+  ),
+)
+
+@mixin _private-apply-font($font-style) {
+  $font-map: map.get($typography-map, $font-style);
+  
+  font-size: map.get($font-map, "size");
+  font-weight: map.get($font-map, "weight");
+  letter-spacing: map.get($font-map, "tracking");
+  line-height: map.get($font-map, "line-height");
 }
 
- html,body {
-  margin: 0;
-  padding: 0px;
-}  
-
-body{
-  font-family: "Roboto", sans-serif;
-  box-sizing: border-box;
-  background-color:lightgray;
-  @include typography(16px, 400);
+@mixin typography-title {
+  @include _private-apply-font("title");
 }
  
+
+
+ body {
+   margin: 0;
+   font-family: "Roboto", sans-serif;
+   box-sizing: border-box;
+   background-color: white;
+   @include typography(14px, 400);
+ }
+
  .material-symbols-outlined {
    font-variation-settings: 'FILL' 0,
      'wght' 400,
      'GRAD' 0,
      'opsz' 24
+ }
+
+ .container {
+   height: 100dvh;
+   display: grid;
+   grid-template-columns: min-content 1fr;
+   gap: 35px;
+   margin: auto auto;
+ }
+
+ .material-symbols-outlined {
+   font-size: 24px;
+   margin: 0 12px 0 16px;
+ }
+
+ .sidebar {
+   background-color: antiquewhite;
+   border-radius: 0 30px 30px 0;
+   width: 360px;
+   box-sizing: border-box;
+
+   &__title {
+     padding: 16px 16px 0 16px;
+   }
+
+   &__item {
+     margin: 12px;
+     display: flex;
+     align-items: center;
+     padding: 16px;
+     border-radius: 24px;
+     height: 56px;
+     box-sizing: border-box;
+
+     &:hover {
+       background-color: #ebe6f5;
+       box-sizing: border-box;
+       width: 336px;
+     }
+
+     &--active {
+       background-color: #d9d4ec;
+       box-sizing: border-box;
+       width: 336px;
+
+       .material-symbols-outlined {
+         margin-right: 12px;
+       }
+     }
+
+     &--count {}
+   }
+
+   &__labels {
+     position: relative;
+     margin-top: 16px;
+
+     &::before {
+       content: '';
+       position: absolute;
+       top: 0;
+       left: 28px;
+       right: 28px;
+       height: 1px;
+       background-color: black;
+     }
+
+     &__item {
+       margin: 12px;
+       display: flex;
+       align-items: center;
+       padding: 16px;
+       border-radius: 24px;
+       height: 56px;
+       box-sizing: border-box;
+
+       &:hover {
+         background-color: #ebe6f5;
+         box-sizing: border-box;
+         width: 336px;
+       }
+
+       &--title {}
+     }
+   }
  }
