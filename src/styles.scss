@@ -129,17 +129,3 @@
  .content {
    @include typography-title;
  }
-
- @media (width < #{$breakpoint-tablet}){
-  .container {
-    height: 100dvh;
-    display: grid;
-    grid-template-columns: min-content 1fr;
-    margin: auto auto;
-    background-color: var(--md-sys-color-inverse-surface);
-  }
-}
-
-@media (width < #{$breakpoint-phone}){
-  
-}
